@@ -1,0 +1,6 @@
+= A formal framework for deliberated judgment
+
+A paper that introduces the concept of Deliberated Judgment.
+
+Preprint (quite different now) published at https://arxiv.org/abs/1801.05644[arXiv].
+
