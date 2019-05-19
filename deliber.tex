@@ -1,18 +1,16 @@
-\RequirePackage{amsmath}
 \RequirePackage[l2tabu, orthodox]{nag}
-\RequirePackage{fix-cm}
-\documentclass[smallextended,nospthms, natbib]{svjour3}
-\makeatletter \let\cl@chapter\relax \makeatother
-\smartqed  % flush right qed marks, e.g. at end of proof
+\documentclass[version=3.21, pagesize, twoside=off, bibliography=totoc, DIV=calc, fontsize=12pt, a4paper]{scrartcl}
+%\makeatletter \let\cl@chapter\relax \makeatother
+%\smartqed  % flush right qed marks, e.g. at end of proof
 \input{preamble/packages}
 \input{preamble/math_basics}
 \input{preamble/math_mine}
 \input{preamble/redac}
 \input{preamble/draw}
 \input{preamble/acronyms}
-\setcounter{tocdepth}{4}
+%\setcounter{tocdepth}{4}
 
-\journalname{Theory and Decision}
+%\journalname{Theory and Decision}
 
 \newcommand{\argscldec}{S_{γ\textnormal{dec}}}
 \newcommand{\argscldef}{S_{γ\textnormal{def}}}
@@ -23,30 +21,19 @@
 
 %\newcommand{\llabel}[1]{\hypertarget{lintarget:#1}{}\linelabel{lin:#1}}
 
-\begin{document}
 \title{A formal framework for deliberated judgment}
-\author{Olivier Cailloux \and Yves Meinard}
-\institute{
-	Olivier Cailloux 
-	\and
-	Yves Meinard 
-	\at 
-	Université Paris-Dauphine, \\
-	PSL Research University, \\
-	CNRS, \\
-	LAMSADE\\
-	75016 PARIS, FRANCE\\
-	\email{olivier.cailloux@dauphine.fr}
+\author{Olivier Cailloux}
+\author{Yves Meinard}
+\affil{Université Paris-Dauphine, PSL Research University, CNRS, LAMSADE, 75016 PARIS, FRANCE\\
+	\href{mailto:olivier.cailloux@dauphine.fr}{olivier.cailloux@dauphine.fr}
 }
-\makeatletter
-	\hypersetup{
-		pdfsubject={preference},
-		pdfkeywords={decision analysis, justification, empirical validation, methodology}
-	}
-\makeatother
-\maketitle
+\hypersetup{
+	pdfsubject={preference},
+	pdfkeywords={decision analysis, justification, empirical validation, methodology}
+}
 
-\keywords{decision analysis, justification, empirical validation, methodology}
+\begin{document}
+\maketitle
 
 \begin{abstract}
 While the philosophical literature has extensively studied how decisions relate to arguments, reasons and justifications, decision theory almost entirely ignores the latter notions.
