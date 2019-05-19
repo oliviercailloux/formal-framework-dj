@@ -171,7 +171,7 @@ Because $\ar$ anticipates that $\ar_2$ could be envisaged to trump it, $\ar$ cou
 		\path (eql.east) node[anchor=west] (eqr) {rain tomorrow ($t$)};
 		\path (eq.south) ++(0, -\BDNodeSep) node[anchor=north] (wages) {weather forecast is often wrong ($\ar_2$)};
 		\path (wages) edge[/Beliefs/attack] node[right] {$\ibeatse$} (eq);
-		\path (wages.south) ++(0, -\BDNodeSep) node[anchor=north, /Beliefs/decisive] (discrimination) {weather forecast is more often right ($\ar_3$)};
+		\path (wages.south) ++(0, -\BDNodeSep) node[anchor=north, /Beliefs/decisive] (discrimination) {weather f.\ is more often right ($\ar_3$)};
 		\path (discrimination) edge[/Beliefs/attack] node[right] {$\ibeatse$} (wages);
 		
 		\path (eqr.east) node[anchor=west] (complexl) {\reflectbox{$\ileadsto$}};
@@ -574,7 +574,7 @@ Our main goal in this section is to prove \cref{thm:clearcutStrong}. We do this 
 
 Let us start with the formal definition of efficiency.
 \begin{definition}[Efficiency]
-	Given a decision situation $(T, \allargs, {\ileadsto}, {\ibeatse}, {\nibeatse})$, given $\args \subseteq \allargs$, $\args$ is \emph{efficient} iff
+	Given a decision situation $(T, \allargs, {\ileadsto}, {\ibeatse}, {\nibeatse})$ and $\args \subseteq \allargs$, $\args$ is \emph{efficient} iff
 	$T_i = \ileadsto(S ∩ \overline{\ibeatse(\allargs)})$, and $t \notin T_i ⇔ \ileadstoinv(t) \subseteq \ibeatsst(S ∩ \overline{\ibeatse(\allargs)})$.
 \end{definition}
 
@@ -672,7 +672,7 @@ Similarly, $\argsreplcldec$ are the arguments essentially replaceable by $\argsc
 	
 	The next subset relation holds because if some decisive argument supports $t$, that argument is not in $\ibeatsst(\argscldec)$.
 
-	Finally, Answerability mandates that $\ibeatse(\argscldec) \subseteq \ibeatsst(\argscldec)$, hence, $\overline{\ibeatsst(\argscldec)} \subseteq \overline{\ibeatse(\argscldec)}$, and using [$\allargs = \argsreplcldec ∪ \ibeatse(\argscldec)$], $\overline{\ibeatse(\argscldec)} \subseteq \argsreplcldec$.
+	Finally, Answerability mandates that $\ibeatse(\argscldec) \subseteq \ibeatsst(\argscldec)$, from which it follows that $\overline{\ibeatsst(\argscldec)} \subseteq \overline{\ibeatse(\argscldec)}$, and using [$\allargs = \argsreplcldec ∪ \ibeatse(\argscldec)$], $\overline{\ibeatse(\argscldec)} \subseteq \argsreplcldec$.
 \end{proof}
 
 \begin{theorem}[Validity of $\eta$]
