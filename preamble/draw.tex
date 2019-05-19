@@ -1,0 +1,104 @@
+\newlength{\GraphsNodeSep}
+\setlength{\GraphsNodeSep}{7mm}
+
+% MCDA Drawing Sorting
+\newlength{\MCDSCatHeight}
+\setlength{\MCDSCatHeight}{6mm}
+\newlength{\MCDSAltHeight}
+\setlength{\MCDSAltHeight}{4mm}
+%separation between two vertical alts
+\newlength{\MCDSAltSep}
+\setlength{\MCDSAltSep}{2mm}
+\newlength{\MCDSCatWidth}
+\setlength{\MCDSCatWidth}{3cm}
+\newlength{\MCDSEvalRowHeight}
+\setlength{\MCDSEvalRowHeight}{6mm}
+\newlength{\MCDSAltsToCatsSep}
+\setlength{\MCDSAltsToCatsSep}{1.5cm}
+\newcounter{MCDSNbAlts}
+\newcounter{MCDSNbCats}
+\newlength{\MCDSArrowDownOffset}
+\setlength{\MCDSArrowDownOffset}{0mm}
+
+\tikzset{/Graphs/dot/.style={
+	shape=circle, fill=black, inner sep=0, minimum size=1mm
+}}
+\tikzset{/MC/D/S/alt/.style={
+	shape=rectangle, draw=black, inner sep=0, minimum height=\MCDSAltHeight, minimum width=2.5cm, anchor=north east
+}}
+\tikzset{MC/D/S/pref/.style={
+	shape=ellipse, draw=gray, thick
+}}
+\tikzset{/MC/D/S/cat/.style={
+	shape=rectangle, draw=black, inner sep=0, minimum height=\MCDSCatHeight, minimum width=\MCDSCatWidth, anchor=north west
+}}
+\tikzset{/MC/D/S/evals matrix/.style={
+	matrix, row sep=-\pgflinewidth, column sep=-\pgflinewidth, nodes={shape=rectangle, draw=black, inner sep=0mm, text depth=0.5ex, text height=1em, minimum height=\MCDSEvalRowHeight, minimum width=12mm}, nodes in empty cells, matrix of nodes, inner sep=0mm, outer sep=0mm, row 1/.style={nodes={draw=none, minimum height=0em, text height=, inner ysep=1mm}}
+}}
+
+% GUI
+\tikzset{/GUI/button/.style={
+	rectangle, very thick, rounded corners, draw=black, fill=black!40%, top color=black!70, bottom color=white
+}}
+
+% Beliefs
+\newlength{\BDNodeSep}
+\setlength{\BDNodeSep}{5mm}
+\newlength{\BDDecLength}
+\setlength{\BDDecLength}{3mm}
+\newlength{\BDDecWidth}
+\setlength{\BDDecWidth}{1mm}
+\tikzset{/Beliefs/attacker/.style={
+	shape=rectangle, draw, minimum size=8mm
+}}
+\tikzset{/Beliefs/supporter/.style={
+	shape=circle, draw
+}}
+\tikzset{/Beliefs/undefeated/.style={
+	shape=circle, draw
+}}
+\tikzset{/Beliefs/defeated/.style={
+	shape=rectangle
+}}
+\tikzset{/Beliefs/attack/.style={
+%TODO à changer, mais crée warnings à la compilation avec version 3.0.0
+%	arrows=-{Stealth}
+	arrows=-{>}
+}}
+\tikzset{/Beliefs/attackst/.style={
+	arrows=-{>}, double
+}}
+\tikzset{/Beliefs/attackun/.style={
+	arrows=-{>},
+	decorate,
+	decoration={coil, segment length=1.5mm, aspect=0},
+%fails with ! Dimension too large. Too hard for TeX, see http://tex.stackexchange.com/questions/4404/tikz-multiple-decorations-on-a-path
+%	postaction={
+%		decorate,
+%		decoration={
+%			markings, mark=at position 0.5 with {
+%				\node[right] {unstable};
+%			}
+%		}
+%	},
+}}
+\tikzset{/Beliefs/nattack/.style={
+	arrows=-{>},
+	decoration={
+		markings, mark=at position 0.5 with {
+			\draw[-] ++ (-1mm, 1mm) -- (1mm, -1mm);
+		}
+	},
+	postaction={decorate},
+}}
+\tikzset{/Beliefs/decisive/.style={
+	alias=thisone,
+	append after command={
+      (thisone.south) edge[draw] +(0, -\BDDecLength) ++(0, -\BDDecLength) edge[draw] ++(-\BDDecWidth, 0) edge[draw] ++(\BDDecWidth, 0)
+	}
+}}
+
+\newcommand{\tikzmark}[1]{%
+	\tikz[overlay, remember picture, baseline=(#1.base)] \node (#1) {};%
+}
+
