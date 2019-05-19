@@ -47,7 +47,7 @@
 \usepackage{calc}
 \usepackage{tabularx}
 
-\usepackage{etoolbox} %for addtocmd, newtoggle commands
+\usepackage{xpatch} %for addtocmd, newtoggle commands
 \newtoggle{LCpres}
 \togglefalse{LCpres}
 
@@ -70,13 +70,19 @@
 	\usepackage[textsize=small]{todonotes}
 }{
 }
+\makeatletter
 \iftoggle{LCpres}{
 	%remove pdfusetitle (implied by beamer)
 	\usepackage{hyperref}
 }{
 % option pdfusetitle must be introduced here, not in hypersetup.
 	\usepackage[pdfusetitle]{hyperref}
+	%https://tex.stackexchange.com/a/466235
+	\pdfstringdefDisableCommands{%
+		\let\thanks\@gobble
+	}
 }
+\makeatother
 \nottoggle{LCpres}{
 	%seems like authblk wants to be later than hyperref, but sooner than silence
 	\usepackage{authblk}
@@ -101,6 +107,34 @@
 %\hypersetup{breaklinks,bookmarksopen,colorlinks=true,urlcolor=blue,linkcolor=,hyperfigures=true}
 % hyperref doc says: Package bookmark replaces hyperref’s bookmark organization by a new algorithm (...) Therefore I recommend using this package.
 \usepackage{bookmark}
+%Need to invoke hyperref explicitly to link to line numbers: \hyperlink{lintarget:mylinelabel}{\ref*{lin:mylinelabel}}, with \ref* to disable automatic link. Also see https://tex.stackexchange.com/q/428656 for referencing lines from another document.
+	%\usepackage{lineno}
+	%\newcommand{\llabel}[1]{\hypertarget{lintarget:#1}{}\linelabel{lin:#1}}
+	%\setlength\linenumbersep{9mm}
+%For complex authors blocks. Seems like authblk wants to be later than hyperref, but sooner than silence. See https://tex.stackexchange.com/q/475513 for the patch to hyperref pdfauthor.
+	\ExplSyntaxOn
+	\seq_new:N \g_oc_hrauthor_seq
+	\NewDocumentCommand{\addhrauthor}{m}{
+		\seq_gput_right:Nn \g_oc_hrauthor_seq { #1 }
+	}
+	%Should be \NewExpandableDocumentCommand, but this is not yet provided by my version of xparse
+	\DeclareExpandableDocumentCommand{\hrauthor}{}{
+		\seq_use:Nn \g_oc_hrauthor_seq {,~}
+	}
+	\ExplSyntaxOff
+	{
+		\catcode`#=11\relax
+		\gdef\fixauthor{\xpretocmd{\author}{\addhrauthor{#2}}{}{}}%
+	}
+	\nottoggle{LCpres}{
+		\usepackage{authblk}
+		\renewcommand\Affilfont{\small}
+		\fixauthor
+		\AtBeginDocument{
+		    \hypersetup{pdfauthor={\hrauthor}}
+		}
+	}{
+	}
 
 % center floats by default, but do not use with float
 % \usepackage{floatrow}
