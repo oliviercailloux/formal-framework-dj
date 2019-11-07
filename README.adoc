@@ -2,5 +2,5 @@
 
 A paper that introduces the concept of Deliberated Judgment.
 
-https://github.com/oliviercailloux/formal-framework-dj/raw/master/deliber.pdf[Here] is the postprint version. (A preprint version, now quite different, has been published at https://arxiv.org/abs/1801.05644[arXiv].)
+https://github.com/oliviercailloux/formal-framework-dj/raw/master/journal.pdf[Here] is the journal version. (A preprint version, now quite different, has been published at https://arxiv.org/abs/1801.05644[arXiv].)
 
